@@ -1,0 +1,59 @@
+(* --- RULES --- *)
+stmt_assignment = identifier EQ expr;
+(* Expressions *)
+expr = expr_arithmetic | expr_logical;
+expr_arithmetic = expr {op_arithmetic expr};
+expr_logical = expr {op_logical expr} | BANG expr_logical;
+(* Data Types *)
+integer = DIGIT {DIGIT};
+double = integer PERIOD integer;
+string = DOUBLE_QUOTE <any characters> DOUBLE_QUOTE
+primitive = integer | double | string;
+tuple = LPAREN primitive {COMMA primitive} RPAREN;
+tree = tree_root tree_children;
+tree_children = LBRACKET value {COMMA value} RBRACKET;
+tree_root = primitive | tuple;
+value = primitive | tuple | tree;
+identifier = <a-zA-z_> <a-zA-Z0-9_>
+
+(* --- TOKENS --- *)
+(* Keywords *)
+IF = "if";
+ELSE = "else";
+FOR = "for";
+NULL = "Null";
+TRUE = "True";
+FALSE = "False";
+(* Literals *)
+DIGIT = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9";
+(* Assignment *)
+EQ = "=";
+(* Comparison Ops *)
+DEQ = "==";
+NEQ = "!=";
+GT = ">";
+LT = "<";
+GE = ">=";
+LE = "<=";
+BANG = "!"
+(* Tree Ops *)
+AT = "@"; (* access data element *)
+PERCENT = "%"; (* access n-th child *)
+(* Math Ops *)
+PLUS = "+";
+MINUS = "-";
+STAR = "*";
+SLASH = "/";
+(* Brackets *)
+LPAREN = "(";
+RPAREN = ")";
+LBRACKET = "[";
+RBRACKET = "]";
+LBRACE = "{";
+RBRACE = "}";
+(* Other *)
+DOUBLE_QUOTE = '"';
+SINGLE_QUOTE = "'";
+SEMICOLON = ";";
+PERIOD = ".";
+COMMA = ","
