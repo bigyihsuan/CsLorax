@@ -60,12 +60,12 @@ Usage:
 ```js
 var tree = 1[2[3, 4],5];
 print(tree$); // prints 1
-print(tree[$); // prints 2 (left)
-print(tree]$); // prints 5 (right)
-print(tree[]$); // prints 4 (left-right child)
-print(tree[^$); // prints 1 (left-parent)
-print(tree]]$); // NULL (right-right, which doesn't exist)
-print(tree]]]$); // NULL (right-right-right, which doesn't exist)
+print(tree/$); // prints 2 (left)
+print(tree\$); // prints 5 (right)
+print(tree/\$); // prints 4 (left-right child)
+print(tree/^$); // prints 1 (left-parent)
+print(tree\\$); // NULL (right-right, which doesn't exist)
+print(tree\\\$); // NULL (right-right-right, which doesn't exist)
 ```
 
 ## Data Structures as Tree Nodes

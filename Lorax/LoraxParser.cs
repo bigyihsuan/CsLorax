@@ -36,18 +36,22 @@ public partial class LoraxParser : Parser {
 	protected static DFA[] decisionToDFA;
 	protected static PredictionContextCache sharedContextCache = new PredictionContextCache();
 	public const int
-		T__0=1, T__1=2, T__2=3, INTEGER=4;
+		T__0=1, T__1=2, T__2=3, IDENTIFIER=4, INTEGER=5, TREE_ACCESS_LEFT=6, TREE_ACCESS_RIGHT=7, 
+		TREE_ACCESS_PARENT=8, TREE_ACCESS_VALUE=9;
 	public const int
-		RULE_treeLiteral = 0, RULE_treeChild = 1, RULE_nodeValue = 2;
+		RULE_treeAccess = 0, RULE_treeLiteral = 1, RULE_treeChild = 2, RULE_nodeValue = 3, 
+		RULE_treeAccessOps = 4, RULE_treeAccessTraversor = 5;
 	public static readonly string[] ruleNames = {
-		"treeLiteral", "treeChild", "nodeValue"
+		"treeAccess", "treeLiteral", "treeChild", "nodeValue", "treeAccessOps", 
+		"treeAccessTraversor"
 	};
 
 	private static readonly string[] _LiteralNames = {
-		null, "'['", "','", "']'"
+		null, "'['", "','", "']'", null, null, "'/'", "'\\'", "'^'", "'$'"
 	};
 	private static readonly string[] _SymbolicNames = {
-		null, null, null, null, "INTEGER"
+		null, null, null, null, "IDENTIFIER", "INTEGER", "TREE_ACCESS_LEFT", "TREE_ACCESS_RIGHT", 
+		"TREE_ACCESS_PARENT", "TREE_ACCESS_VALUE"
 	};
 	public static readonly IVocabulary DefaultVocabulary = new Vocabulary(_LiteralNames, _SymbolicNames);
 
@@ -81,6 +85,71 @@ public partial class LoraxParser : Parser {
 		Interpreter = new ParserATNSimulator(this, _ATN, decisionToDFA, sharedContextCache);
 	}
 
+	public partial class TreeAccessContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public TreeAccessOpsContext treeAccessOps() {
+			return GetRuleContext<TreeAccessOpsContext>(0);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode IDENTIFIER() { return GetToken(LoraxParser.IDENTIFIER, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public TreeLiteralContext treeLiteral() {
+			return GetRuleContext<TreeLiteralContext>(0);
+		}
+		public TreeAccessContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_treeAccess; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			ILoraxListener typedListener = listener as ILoraxListener;
+			if (typedListener != null) typedListener.EnterTreeAccess(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			ILoraxListener typedListener = listener as ILoraxListener;
+			if (typedListener != null) typedListener.ExitTreeAccess(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public TreeAccessContext treeAccess() {
+		TreeAccessContext _localctx = new TreeAccessContext(Context, State);
+		EnterRule(_localctx, 0, RULE_treeAccess);
+		try {
+			EnterOuterAlt(_localctx, 1);
+			{
+			State = 14;
+			ErrorHandler.Sync(this);
+			switch (TokenStream.LA(1)) {
+			case IDENTIFIER:
+				{
+				State = 12;
+				Match(IDENTIFIER);
+				}
+				break;
+			case INTEGER:
+				{
+				State = 13;
+				treeLiteral();
+				}
+				break;
+			default:
+				throw new NoViableAltException(this);
+			}
+			State = 16;
+			treeAccessOps();
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
 	public partial class TreeLiteralContext : ParserRuleContext {
 		[System.Diagnostics.DebuggerNonUserCode] public NodeValueContext nodeValue() {
 			return GetRuleContext<NodeValueContext>(0);
@@ -111,38 +180,38 @@ public partial class LoraxParser : Parser {
 	[RuleVersion(0)]
 	public TreeLiteralContext treeLiteral() {
 		TreeLiteralContext _localctx = new TreeLiteralContext(Context, State);
-		EnterRule(_localctx, 0, RULE_treeLiteral);
+		EnterRule(_localctx, 2, RULE_treeLiteral);
 		int _la;
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 6;
+			State = 18;
 			nodeValue();
-			State = 7;
+			State = 19;
 			Match(T__0);
-			State = 15;
+			State = 27;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			if (_la==T__1 || _la==INTEGER) {
 				{
-				State = 9;
+				State = 21;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==INTEGER) {
 					{
-					State = 8;
+					State = 20;
 					treeChild();
 					}
 				}
 
-				State = 11;
+				State = 23;
 				Match(T__1);
-				State = 13;
+				State = 25;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==INTEGER) {
 					{
-					State = 12;
+					State = 24;
 					treeChild();
 					}
 				}
@@ -150,7 +219,7 @@ public partial class LoraxParser : Parser {
 				}
 			}
 
-			State = 17;
+			State = 29;
 			Match(T__2);
 			}
 		}
@@ -192,22 +261,22 @@ public partial class LoraxParser : Parser {
 	[RuleVersion(0)]
 	public TreeChildContext treeChild() {
 		TreeChildContext _localctx = new TreeChildContext(Context, State);
-		EnterRule(_localctx, 2, RULE_treeChild);
+		EnterRule(_localctx, 4, RULE_treeChild);
 		try {
-			State = 21;
+			State = 33;
 			ErrorHandler.Sync(this);
-			switch ( Interpreter.AdaptivePredict(TokenStream,3,Context) ) {
+			switch ( Interpreter.AdaptivePredict(TokenStream,4,Context) ) {
 			case 1:
 				EnterOuterAlt(_localctx, 1);
 				{
-				State = 19;
+				State = 31;
 				nodeValue();
 				}
 				break;
 			case 2:
 				EnterOuterAlt(_localctx, 2);
 				{
-				State = 20;
+				State = 32;
 				treeLiteral();
 				}
 				break;
@@ -246,11 +315,11 @@ public partial class LoraxParser : Parser {
 	[RuleVersion(0)]
 	public NodeValueContext nodeValue() {
 		NodeValueContext _localctx = new NodeValueContext(Context, State);
-		EnterRule(_localctx, 4, RULE_nodeValue);
+		EnterRule(_localctx, 6, RULE_nodeValue);
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 23;
+			State = 35;
 			Match(INTEGER);
 			}
 		}
@@ -265,15 +334,142 @@ public partial class LoraxParser : Parser {
 		return _localctx;
 	}
 
+	public partial class TreeAccessOpsContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public TreeAccessTraversorContext[] treeAccessTraversor() {
+			return GetRuleContexts<TreeAccessTraversorContext>();
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public TreeAccessTraversorContext treeAccessTraversor(int i) {
+			return GetRuleContext<TreeAccessTraversorContext>(i);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TREE_ACCESS_VALUE() { return GetToken(LoraxParser.TREE_ACCESS_VALUE, 0); }
+		public TreeAccessOpsContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_treeAccessOps; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			ILoraxListener typedListener = listener as ILoraxListener;
+			if (typedListener != null) typedListener.EnterTreeAccessOps(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			ILoraxListener typedListener = listener as ILoraxListener;
+			if (typedListener != null) typedListener.ExitTreeAccessOps(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public TreeAccessOpsContext treeAccessOps() {
+		TreeAccessOpsContext _localctx = new TreeAccessOpsContext(Context, State);
+		EnterRule(_localctx, 8, RULE_treeAccessOps);
+		int _la;
+		try {
+			EnterOuterAlt(_localctx, 1);
+			{
+			State = 40;
+			ErrorHandler.Sync(this);
+			_la = TokenStream.LA(1);
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << TREE_ACCESS_LEFT) | (1L << TREE_ACCESS_RIGHT) | (1L << TREE_ACCESS_PARENT))) != 0)) {
+				{
+				{
+				State = 37;
+				treeAccessTraversor();
+				}
+				}
+				State = 42;
+				ErrorHandler.Sync(this);
+				_la = TokenStream.LA(1);
+			}
+			State = 44;
+			ErrorHandler.Sync(this);
+			_la = TokenStream.LA(1);
+			if (_la==TREE_ACCESS_VALUE) {
+				{
+				State = 43;
+				Match(TREE_ACCESS_VALUE);
+				}
+			}
+
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public partial class TreeAccessTraversorContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TREE_ACCESS_LEFT() { return GetToken(LoraxParser.TREE_ACCESS_LEFT, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TREE_ACCESS_RIGHT() { return GetToken(LoraxParser.TREE_ACCESS_RIGHT, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TREE_ACCESS_PARENT() { return GetToken(LoraxParser.TREE_ACCESS_PARENT, 0); }
+		public TreeAccessTraversorContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_treeAccessTraversor; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			ILoraxListener typedListener = listener as ILoraxListener;
+			if (typedListener != null) typedListener.EnterTreeAccessTraversor(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			ILoraxListener typedListener = listener as ILoraxListener;
+			if (typedListener != null) typedListener.ExitTreeAccessTraversor(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public TreeAccessTraversorContext treeAccessTraversor() {
+		TreeAccessTraversorContext _localctx = new TreeAccessTraversorContext(Context, State);
+		EnterRule(_localctx, 10, RULE_treeAccessTraversor);
+		int _la;
+		try {
+			EnterOuterAlt(_localctx, 1);
+			{
+			State = 46;
+			_la = TokenStream.LA(1);
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << TREE_ACCESS_LEFT) | (1L << TREE_ACCESS_RIGHT) | (1L << TREE_ACCESS_PARENT))) != 0)) ) {
+			ErrorHandler.RecoverInline(this);
+			}
+			else {
+				ErrorHandler.ReportMatch(this);
+			    Consume();
+			}
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
 	private static int[] _serializedATN = {
-		4,1,4,26,2,0,7,0,2,1,7,1,2,2,7,2,1,0,1,0,1,0,3,0,10,8,0,1,0,1,0,3,0,14,
-		8,0,3,0,16,8,0,1,0,1,0,1,1,1,1,3,1,22,8,1,1,2,1,2,1,2,0,0,3,0,2,4,0,0,
-		26,0,6,1,0,0,0,2,21,1,0,0,0,4,23,1,0,0,0,6,7,3,4,2,0,7,15,5,1,0,0,8,10,
-		3,2,1,0,9,8,1,0,0,0,9,10,1,0,0,0,10,11,1,0,0,0,11,13,5,2,0,0,12,14,3,2,
-		1,0,13,12,1,0,0,0,13,14,1,0,0,0,14,16,1,0,0,0,15,9,1,0,0,0,15,16,1,0,0,
-		0,16,17,1,0,0,0,17,18,5,3,0,0,18,1,1,0,0,0,19,22,3,4,2,0,20,22,3,0,0,0,
-		21,19,1,0,0,0,21,20,1,0,0,0,22,3,1,0,0,0,23,24,5,4,0,0,24,5,1,0,0,0,4,
-		9,13,15,21
+		4,1,9,49,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,1,0,1,0,3,0,15,
+		8,0,1,0,1,0,1,1,1,1,1,1,3,1,22,8,1,1,1,1,1,3,1,26,8,1,3,1,28,8,1,1,1,1,
+		1,1,2,1,2,3,2,34,8,2,1,3,1,3,1,4,5,4,39,8,4,10,4,12,4,42,9,4,1,4,3,4,45,
+		8,4,1,5,1,5,1,5,0,0,6,0,2,4,6,8,10,0,1,1,0,6,8,49,0,14,1,0,0,0,2,18,1,
+		0,0,0,4,33,1,0,0,0,6,35,1,0,0,0,8,40,1,0,0,0,10,46,1,0,0,0,12,15,5,4,0,
+		0,13,15,3,2,1,0,14,12,1,0,0,0,14,13,1,0,0,0,15,16,1,0,0,0,16,17,3,8,4,
+		0,17,1,1,0,0,0,18,19,3,6,3,0,19,27,5,1,0,0,20,22,3,4,2,0,21,20,1,0,0,0,
+		21,22,1,0,0,0,22,23,1,0,0,0,23,25,5,2,0,0,24,26,3,4,2,0,25,24,1,0,0,0,
+		25,26,1,0,0,0,26,28,1,0,0,0,27,21,1,0,0,0,27,28,1,0,0,0,28,29,1,0,0,0,
+		29,30,5,3,0,0,30,3,1,0,0,0,31,34,3,6,3,0,32,34,3,2,1,0,33,31,1,0,0,0,33,
+		32,1,0,0,0,34,5,1,0,0,0,35,36,5,5,0,0,36,7,1,0,0,0,37,39,3,10,5,0,38,37,
+		1,0,0,0,39,42,1,0,0,0,40,38,1,0,0,0,40,41,1,0,0,0,41,44,1,0,0,0,42,40,
+		1,0,0,0,43,45,5,9,0,0,44,43,1,0,0,0,44,45,1,0,0,0,45,9,1,0,0,0,46,47,7,
+		0,0,0,47,11,1,0,0,0,7,14,21,25,27,33,40,44
 	};
 
 	public static readonly ATN _ATN =

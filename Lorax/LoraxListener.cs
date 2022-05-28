@@ -31,6 +31,16 @@ using IToken = Antlr4.Runtime.IToken;
 [System.CLSCompliant(false)]
 public interface ILoraxListener : IParseTreeListener {
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="LoraxParser.treeAccess"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterTreeAccess([NotNull] LoraxParser.TreeAccessContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="LoraxParser.treeAccess"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitTreeAccess([NotNull] LoraxParser.TreeAccessContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="LoraxParser.treeLiteral"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -60,4 +70,24 @@ public interface ILoraxListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitNodeValue([NotNull] LoraxParser.NodeValueContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="LoraxParser.treeAccessOps"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterTreeAccessOps([NotNull] LoraxParser.TreeAccessOpsContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="LoraxParser.treeAccessOps"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitTreeAccessOps([NotNull] LoraxParser.TreeAccessOpsContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="LoraxParser.treeAccessTraversor"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterTreeAccessTraversor([NotNull] LoraxParser.TreeAccessTraversorContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="LoraxParser.treeAccessTraversor"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitTreeAccessTraversor([NotNull] LoraxParser.TreeAccessTraversorContext context);
 }

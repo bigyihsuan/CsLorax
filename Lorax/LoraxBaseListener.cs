@@ -36,6 +36,18 @@ using ParserRuleContext = Antlr4.Runtime.ParserRuleContext;
 [System.CLSCompliant(false)]
 public partial class LoraxBaseListener : ILoraxListener {
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="LoraxParser.treeAccess"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterTreeAccess([NotNull] LoraxParser.TreeAccessContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="LoraxParser.treeAccess"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitTreeAccess([NotNull] LoraxParser.TreeAccessContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="LoraxParser.treeLiteral"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -71,6 +83,30 @@ public partial class LoraxBaseListener : ILoraxListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitNodeValue([NotNull] LoraxParser.NodeValueContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="LoraxParser.treeAccessOps"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterTreeAccessOps([NotNull] LoraxParser.TreeAccessOpsContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="LoraxParser.treeAccessOps"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitTreeAccessOps([NotNull] LoraxParser.TreeAccessOpsContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="LoraxParser.treeAccessTraversor"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterTreeAccessTraversor([NotNull] LoraxParser.TreeAccessTraversorContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="LoraxParser.treeAccessTraversor"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitTreeAccessTraversor([NotNull] LoraxParser.TreeAccessTraversorContext context) { }
 
 	/// <inheritdoc/>
 	/// <remarks>The default implementation does nothing.</remarks>
