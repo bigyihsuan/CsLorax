@@ -60,6 +60,18 @@ public partial class LoraxBaseListener : ILoraxListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitTreeLiteral([NotNull] LoraxParser.TreeLiteralContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="LoraxParser.treeChildren"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterTreeChildren([NotNull] LoraxParser.TreeChildrenContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="LoraxParser.treeChildren"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitTreeChildren([NotNull] LoraxParser.TreeChildrenContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="LoraxParser.treeChild"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -107,6 +119,30 @@ public partial class LoraxBaseListener : ILoraxListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitTreeAccessTraversor([NotNull] LoraxParser.TreeAccessTraversorContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="LoraxParser.tuple"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterTuple([NotNull] LoraxParser.TupleContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="LoraxParser.tuple"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitTuple([NotNull] LoraxParser.TupleContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="LoraxParser.primitive"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterPrimitive([NotNull] LoraxParser.PrimitiveContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="LoraxParser.primitive"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitPrimitive([NotNull] LoraxParser.PrimitiveContext context) { }
 
 	/// <inheritdoc/>
 	/// <remarks>The default implementation does nothing.</remarks>

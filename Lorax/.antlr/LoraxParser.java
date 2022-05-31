@@ -1,4 +1,4 @@
-// Generated from d:\Programming\GithubRepos\CsLorax\Lorax\Lorax.g4 by ANTLR 4.8
+// Generated from d:\Programming\GithubRepos\CsLorax\Lorax\Lorax.g4 by ANTLR 4.9.2
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -10,35 +10,39 @@ import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class LoraxParser extends Parser {
-	static { RuntimeMetaData.checkVersion("4.8", RuntimeMetaData.VERSION); }
+	static { RuntimeMetaData.checkVersion("4.9.2", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		T__0=1, T__1=2, T__2=3, IDENTIFIER=4, INTEGER=5, TREE_ACCESS_LEFT=6, TREE_ACCESS_RIGHT=7, 
-		TREE_ACCESS_PARENT=8, TREE_ACCESS_VALUE=9;
+		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T_NULL=7, T_BOOL=8, T_TRUE=9, 
+		T_FALSE=10, IDENTIFIER=11, INTEGER=12, FLOAT=13, STRING=14, TREE_ACCESS_LEFT=15, 
+		TREE_ACCESS_RIGHT=16, TREE_ACCESS_PARENT=17, TREE_ACCESS_VALUE=18, WS=19;
 	public static final int
-		RULE_treeAccess = 0, RULE_treeLiteral = 1, RULE_treeChild = 2, RULE_nodeValue = 3, 
-		RULE_treeAccessOps = 4, RULE_treeAccessTraversor = 5;
+		RULE_treeAccess = 0, RULE_treeLiteral = 1, RULE_treeChildren = 2, RULE_treeChild = 3, 
+		RULE_nodeValue = 4, RULE_treeAccessOps = 5, RULE_treeAccessTraversor = 6, 
+		RULE_tuple = 7, RULE_primitive = 8;
 	private static String[] makeRuleNames() {
 		return new String[] {
-			"treeAccess", "treeLiteral", "treeChild", "nodeValue", "treeAccessOps", 
-			"treeAccessTraversor"
+			"treeAccess", "treeLiteral", "treeChildren", "treeChild", "nodeValue", 
+			"treeAccessOps", "treeAccessTraversor", "tuple", "primitive"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, "'['", "','", "']'", null, null, "'/'", "'\\'", "'^'", "'$'"
+			null, "'['", "']'", "':'", "'<'", "','", "'>'", "'Null'", null, "'True'", 
+			"'False'", null, null, null, null, "'/'", "'\\'", "'^'", "'$'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
-			null, null, null, null, "IDENTIFIER", "INTEGER", "TREE_ACCESS_LEFT", 
-			"TREE_ACCESS_RIGHT", "TREE_ACCESS_PARENT", "TREE_ACCESS_VALUE"
+			null, null, null, null, null, null, null, "T_NULL", "T_BOOL", "T_TRUE", 
+			"T_FALSE", "IDENTIFIER", "INTEGER", "FLOAT", "STRING", "TREE_ACCESS_LEFT", 
+			"TREE_ACCESS_RIGHT", "TREE_ACCESS_PARENT", "TREE_ACCESS_VALUE", "WS"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -96,7 +100,6 @@ public class LoraxParser extends Parser {
 		public TreeAccessOpsContext treeAccessOps() {
 			return getRuleContext(TreeAccessOpsContext.class,0);
 		}
-		public TerminalNode IDENTIFIER() { return getToken(LoraxParser.IDENTIFIER, 0); }
 		public TreeLiteralContext treeLiteral() {
 			return getRuleContext(TreeLiteralContext.class,0);
 		}
@@ -112,25 +115,11 @@ public class LoraxParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(14);
-			_errHandler.sync(this);
-			switch (_input.LA(1)) {
-			case IDENTIFIER:
-				{
-				setState(12);
-				match(IDENTIFIER);
-				}
-				break;
-			case INTEGER:
-				{
-				setState(13);
-				treeLiteral();
-				}
-				break;
-			default:
-				throw new NoViableAltException(this);
+			{
+			setState(18);
+			treeLiteral();
 			}
-			setState(16);
+			setState(19);
 			treeAccessOps();
 			}
 		}
@@ -149,11 +138,8 @@ public class LoraxParser extends Parser {
 		public NodeValueContext nodeValue() {
 			return getRuleContext(NodeValueContext.class,0);
 		}
-		public List<TreeChildContext> treeChild() {
-			return getRuleContexts(TreeChildContext.class);
-		}
-		public TreeChildContext treeChild(int i) {
-			return getRuleContext(TreeChildContext.class,i);
+		public TreeChildrenContext treeChildren() {
+			return getRuleContext(TreeChildrenContext.class,0);
 		}
 		public TreeLiteralContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -168,42 +154,77 @@ public class LoraxParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(18);
+			setState(21);
 			nodeValue();
-			setState(19);
+			setState(22);
 			match(T__0);
-			setState(27);
+			setState(24);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if (_la==T__1 || _la==INTEGER) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__2) | (1L << T__3) | (1L << T_NULL) | (1L << T_BOOL) | (1L << INTEGER) | (1L << FLOAT) | (1L << STRING))) != 0)) {
 				{
-				setState(21);
-				_errHandler.sync(this);
-				_la = _input.LA(1);
-				if (_la==INTEGER) {
-					{
-					setState(20);
-					treeChild();
-					}
-				}
-
 				setState(23);
-				match(T__1);
-				setState(25);
-				_errHandler.sync(this);
-				_la = _input.LA(1);
-				if (_la==INTEGER) {
-					{
-					setState(24);
-					treeChild();
-					}
-				}
-
+				treeChildren();
 				}
 			}
 
+			setState(26);
+			match(T__1);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class TreeChildrenContext extends ParserRuleContext {
+		public List<TreeChildContext> treeChild() {
+			return getRuleContexts(TreeChildContext.class);
+		}
+		public TreeChildContext treeChild(int i) {
+			return getRuleContext(TreeChildContext.class,i);
+		}
+		public TreeChildrenContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_treeChildren; }
+	}
+
+	public final TreeChildrenContext treeChildren() throws RecognitionException {
+		TreeChildrenContext _localctx = new TreeChildrenContext(_ctx, getState());
+		enterRule(_localctx, 4, RULE_treeChildren);
+		int _la;
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
 			setState(29);
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__3) | (1L << T_NULL) | (1L << T_BOOL) | (1L << INTEGER) | (1L << FLOAT) | (1L << STRING))) != 0)) {
+				{
+				setState(28);
+				treeChild();
+				}
+			}
+
+			setState(31);
 			match(T__2);
+			setState(33);
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__3) | (1L << T_NULL) | (1L << T_BOOL) | (1L << INTEGER) | (1L << FLOAT) | (1L << STRING))) != 0)) {
+				{
+				setState(32);
+				treeChild();
+				}
+			}
+
 			}
 		}
 		catch (RecognitionException re) {
@@ -232,22 +253,22 @@ public class LoraxParser extends Parser {
 
 	public final TreeChildContext treeChild() throws RecognitionException {
 		TreeChildContext _localctx = new TreeChildContext(_ctx, getState());
-		enterRule(_localctx, 4, RULE_treeChild);
+		enterRule(_localctx, 6, RULE_treeChild);
 		try {
-			setState(33);
+			setState(37);
 			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,4,_ctx) ) {
+			switch ( getInterpreter().adaptivePredict(_input,3,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(31);
+				setState(35);
 				nodeValue();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(32);
+				setState(36);
 				treeLiteral();
 				}
 				break;
@@ -265,7 +286,12 @@ public class LoraxParser extends Parser {
 	}
 
 	public static class NodeValueContext extends ParserRuleContext {
-		public TerminalNode INTEGER() { return getToken(LoraxParser.INTEGER, 0); }
+		public TupleContext tuple() {
+			return getRuleContext(TupleContext.class,0);
+		}
+		public PrimitiveContext primitive() {
+			return getRuleContext(PrimitiveContext.class,0);
+		}
 		public NodeValueContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -274,12 +300,31 @@ public class LoraxParser extends Parser {
 
 	public final NodeValueContext nodeValue() throws RecognitionException {
 		NodeValueContext _localctx = new NodeValueContext(_ctx, getState());
-		enterRule(_localctx, 6, RULE_nodeValue);
+		enterRule(_localctx, 8, RULE_nodeValue);
 		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(35);
-			match(INTEGER);
+			setState(41);
+			_errHandler.sync(this);
+			switch (_input.LA(1)) {
+			case T__3:
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(39);
+				tuple();
+				}
+				break;
+			case T_NULL:
+			case T_BOOL:
+			case INTEGER:
+			case FLOAT:
+			case STRING:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(40);
+				primitive();
+				}
+				break;
+			default:
+				throw new NoViableAltException(this);
 			}
 		}
 		catch (RecognitionException re) {
@@ -309,31 +354,31 @@ public class LoraxParser extends Parser {
 
 	public final TreeAccessOpsContext treeAccessOps() throws RecognitionException {
 		TreeAccessOpsContext _localctx = new TreeAccessOpsContext(_ctx, getState());
-		enterRule(_localctx, 8, RULE_treeAccessOps);
+		enterRule(_localctx, 10, RULE_treeAccessOps);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(40);
+			setState(46);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << TREE_ACCESS_LEFT) | (1L << TREE_ACCESS_RIGHT) | (1L << TREE_ACCESS_PARENT))) != 0)) {
 				{
 				{
-				setState(37);
+				setState(43);
 				treeAccessTraversor();
 				}
 				}
-				setState(42);
+				setState(48);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(44);
+			setState(50);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==TREE_ACCESS_VALUE) {
 				{
-				setState(43);
+				setState(49);
 				match(TREE_ACCESS_VALUE);
 				}
 			}
@@ -363,12 +408,12 @@ public class LoraxParser extends Parser {
 
 	public final TreeAccessTraversorContext treeAccessTraversor() throws RecognitionException {
 		TreeAccessTraversorContext _localctx = new TreeAccessTraversorContext(_ctx, getState());
-		enterRule(_localctx, 10, RULE_treeAccessTraversor);
+		enterRule(_localctx, 12, RULE_treeAccessTraversor);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(46);
+			setState(52);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << TREE_ACCESS_LEFT) | (1L << TREE_ACCESS_RIGHT) | (1L << TREE_ACCESS_PARENT))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -391,21 +436,131 @@ public class LoraxParser extends Parser {
 		return _localctx;
 	}
 
+	public static class TupleContext extends ParserRuleContext {
+		public List<PrimitiveContext> primitive() {
+			return getRuleContexts(PrimitiveContext.class);
+		}
+		public PrimitiveContext primitive(int i) {
+			return getRuleContext(PrimitiveContext.class,i);
+		}
+		public TupleContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_tuple; }
+	}
+
+	public final TupleContext tuple() throws RecognitionException {
+		TupleContext _localctx = new TupleContext(_ctx, getState());
+		enterRule(_localctx, 14, RULE_tuple);
+		int _la;
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(54);
+			match(T__3);
+			setState(63);
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T_NULL) | (1L << T_BOOL) | (1L << INTEGER) | (1L << FLOAT) | (1L << STRING))) != 0)) {
+				{
+				setState(55);
+				primitive();
+				setState(60);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+				while (_la==T__4) {
+					{
+					{
+					setState(56);
+					match(T__4);
+					setState(57);
+					primitive();
+					}
+					}
+					setState(62);
+					_errHandler.sync(this);
+					_la = _input.LA(1);
+				}
+				}
+			}
+
+			setState(65);
+			match(T__5);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class PrimitiveContext extends ParserRuleContext {
+		public TerminalNode T_NULL() { return getToken(LoraxParser.T_NULL, 0); }
+		public TerminalNode T_BOOL() { return getToken(LoraxParser.T_BOOL, 0); }
+		public TerminalNode STRING() { return getToken(LoraxParser.STRING, 0); }
+		public TerminalNode FLOAT() { return getToken(LoraxParser.FLOAT, 0); }
+		public TerminalNode INTEGER() { return getToken(LoraxParser.INTEGER, 0); }
+		public PrimitiveContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_primitive; }
+	}
+
+	public final PrimitiveContext primitive() throws RecognitionException {
+		PrimitiveContext _localctx = new PrimitiveContext(_ctx, getState());
+		enterRule(_localctx, 16, RULE_primitive);
+		int _la;
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(67);
+			_la = _input.LA(1);
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T_NULL) | (1L << T_BOOL) | (1L << INTEGER) | (1L << FLOAT) | (1L << STRING))) != 0)) ) {
+			_errHandler.recoverInline(this);
+			}
+			else {
+				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+				_errHandler.reportMatch(this);
+				consume();
+			}
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\13\63\4\2\t\2\4\3"+
-		"\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\3\2\3\2\5\2\21\n\2\3\2\3\2\3\3\3"+
-		"\3\3\3\5\3\30\n\3\3\3\3\3\5\3\34\n\3\5\3\36\n\3\3\3\3\3\3\4\3\4\5\4$\n"+
-		"\4\3\5\3\5\3\6\7\6)\n\6\f\6\16\6,\13\6\3\6\5\6/\n\6\3\7\3\7\3\7\2\2\b"+
-		"\2\4\6\b\n\f\2\3\3\2\b\n\2\63\2\20\3\2\2\2\4\24\3\2\2\2\6#\3\2\2\2\b%"+
-		"\3\2\2\2\n*\3\2\2\2\f\60\3\2\2\2\16\21\7\6\2\2\17\21\5\4\3\2\20\16\3\2"+
-		"\2\2\20\17\3\2\2\2\21\22\3\2\2\2\22\23\5\n\6\2\23\3\3\2\2\2\24\25\5\b"+
-		"\5\2\25\35\7\3\2\2\26\30\5\6\4\2\27\26\3\2\2\2\27\30\3\2\2\2\30\31\3\2"+
-		"\2\2\31\33\7\4\2\2\32\34\5\6\4\2\33\32\3\2\2\2\33\34\3\2\2\2\34\36\3\2"+
-		"\2\2\35\27\3\2\2\2\35\36\3\2\2\2\36\37\3\2\2\2\37 \7\5\2\2 \5\3\2\2\2"+
-		"!$\5\b\5\2\"$\5\4\3\2#!\3\2\2\2#\"\3\2\2\2$\7\3\2\2\2%&\7\7\2\2&\t\3\2"+
-		"\2\2\')\5\f\7\2(\'\3\2\2\2),\3\2\2\2*(\3\2\2\2*+\3\2\2\2+.\3\2\2\2,*\3"+
-		"\2\2\2-/\7\13\2\2.-\3\2\2\2./\3\2\2\2/\13\3\2\2\2\60\61\t\2\2\2\61\r\3"+
-		"\2\2\2\t\20\27\33\35#*.";
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\25H\4\2\t\2\4\3\t"+
+		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\3\2\3\2\3\2"+
+		"\3\3\3\3\3\3\5\3\33\n\3\3\3\3\3\3\4\5\4 \n\4\3\4\3\4\5\4$\n\4\3\5\3\5"+
+		"\5\5(\n\5\3\6\3\6\5\6,\n\6\3\7\7\7/\n\7\f\7\16\7\62\13\7\3\7\5\7\65\n"+
+		"\7\3\b\3\b\3\t\3\t\3\t\3\t\7\t=\n\t\f\t\16\t@\13\t\5\tB\n\t\3\t\3\t\3"+
+		"\n\3\n\3\n\2\2\13\2\4\6\b\n\f\16\20\22\2\4\3\2\21\23\4\2\t\n\16\20\2G"+
+		"\2\24\3\2\2\2\4\27\3\2\2\2\6\37\3\2\2\2\b\'\3\2\2\2\n+\3\2\2\2\f\60\3"+
+		"\2\2\2\16\66\3\2\2\2\208\3\2\2\2\22E\3\2\2\2\24\25\5\4\3\2\25\26\5\f\7"+
+		"\2\26\3\3\2\2\2\27\30\5\n\6\2\30\32\7\3\2\2\31\33\5\6\4\2\32\31\3\2\2"+
+		"\2\32\33\3\2\2\2\33\34\3\2\2\2\34\35\7\4\2\2\35\5\3\2\2\2\36 \5\b\5\2"+
+		"\37\36\3\2\2\2\37 \3\2\2\2 !\3\2\2\2!#\7\5\2\2\"$\5\b\5\2#\"\3\2\2\2#"+
+		"$\3\2\2\2$\7\3\2\2\2%(\5\n\6\2&(\5\4\3\2\'%\3\2\2\2\'&\3\2\2\2(\t\3\2"+
+		"\2\2),\5\20\t\2*,\5\22\n\2+)\3\2\2\2+*\3\2\2\2,\13\3\2\2\2-/\5\16\b\2"+
+		".-\3\2\2\2/\62\3\2\2\2\60.\3\2\2\2\60\61\3\2\2\2\61\64\3\2\2\2\62\60\3"+
+		"\2\2\2\63\65\7\24\2\2\64\63\3\2\2\2\64\65\3\2\2\2\65\r\3\2\2\2\66\67\t"+
+		"\2\2\2\67\17\3\2\2\28A\7\6\2\29>\5\22\n\2:;\7\7\2\2;=\5\22\n\2<:\3\2\2"+
+		"\2=@\3\2\2\2><\3\2\2\2>?\3\2\2\2?B\3\2\2\2@>\3\2\2\2A9\3\2\2\2AB\3\2\2"+
+		"\2BC\3\2\2\2CD\7\b\2\2D\21\3\2\2\2EF\t\3\2\2F\23\3\2\2\2\13\32\37#\'+"+
+		"\60\64>A";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

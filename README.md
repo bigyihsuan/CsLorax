@@ -1,6 +1,6 @@
 # `CsLorax`
 
-This is a C# implementation of a language inspired by the [Lorax][1] proposal for a tree-based programming language, with some liberties taken.
+This is a C# implementation of a language inspired by the [Lorax][1] proposal (link is dead, see the PDF in this repo) for a tree-based programming language, with some liberties taken.
 
 ## Goals
 
@@ -20,9 +20,14 @@ This is a C# implementation of a language inspired by the [Lorax][1] proposal fo
 
 ### Composites
 
+* Tuple
+
+A tuple is an ordered container of fixed size and has only primitives within.
+
 * Tree Node
 
 A Tree Node is a container for a value and two children: a left child and a right child.
+The value of the node can be a primitive or a tuple.
 The children can only be Tree Nodes or `NULL`.
 All data structures (like arrays, lists, dictionaries, etc) are, and must be, implemented as Tree Nodes.
 
