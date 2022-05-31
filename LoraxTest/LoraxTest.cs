@@ -63,6 +63,29 @@ public class LoraxTests
         // 4 nodes
     };
 
+    static List<string> filledTrees = new List<string>() {
+        @"False[]",
+        @"1[]", // single-node tree
+        @"1[02.202[]:]", // 1 left child
+        @"1[:<3, 'lol'>[]]", // 1 right child
+        @"1[:<3, 'lol'>['Null'[]:7[]]]", // 1 right child
+        @"1[02.202[]:<3, 'lol'>[]]", // both children
+        @"1[02.202[4[]:False[]]:]]", // recursive tree, left
+        @"1[<3, 'lol'>[6[]:7[]]:]", // recursive tree, right
+        @"1[02.202[4[]:False[]]:<3, 'lol'>[Null[]:7[]]]", // recursive tree, both
+        @"1[02.202[4[]:False[]]:<3, 'lol'>['Null'[]:7[]]]", // recursive tree, both
+    };
+
+    static List<string> treeAccesses = new List<string>() {
+        "$",
+        "/$",
+        "\\$",
+        "/\\",
+        "/^$",
+        "\\\\$",
+        "\\\\\\",
+    };
+
     [TestMethod]
     public void TestPrimitives()
     {
@@ -113,6 +136,26 @@ public class LoraxTests
             parser.BuildParseTree = true;
             IParseTree _tree = parser.treeLiteral();
             Assert.IsTrue(parser.NumberOfSyntaxErrors <= 0);
+        }
+    }
+
+    [TestMethod]
+    public void TestTreeAccess()
+    {
+        foreach (var tree in filledTrees)
+        {
+            foreach (var access in treeAccesses)
+            {
+                var treeAccess = tree + access;
+                Console.WriteLine(treeAccess);
+                ICharStream stream = CharStreams.fromString(treeAccess);
+                ITokenSource lexer = new LoraxLexer(stream);
+                ITokenStream tokens = new CommonTokenStream(lexer);
+                LoraxParser parser = new LoraxParser(tokens);
+                parser.BuildParseTree = true;
+                IParseTree _tree = parser.treeLiteral();
+                Assert.IsTrue(parser.NumberOfSyntaxErrors <= 0);
+            }
         }
     }
 }
