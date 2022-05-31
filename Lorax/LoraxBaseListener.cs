@@ -96,6 +96,18 @@ public partial class LoraxBaseListener : ILoraxListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitNodeValue([NotNull] LoraxParser.NodeValueContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="LoraxParser.tupleAccess"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterTupleAccess([NotNull] LoraxParser.TupleAccessContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="LoraxParser.tupleAccess"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitTupleAccess([NotNull] LoraxParser.TupleAccessContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="LoraxParser.treeAccessOps"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -119,6 +131,18 @@ public partial class LoraxBaseListener : ILoraxListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitTreeAccessTraversor([NotNull] LoraxParser.TreeAccessTraversorContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="LoraxParser.tupleAccessOp"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterTupleAccessOp([NotNull] LoraxParser.TupleAccessOpContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="LoraxParser.tupleAccessOp"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitTupleAccessOp([NotNull] LoraxParser.TupleAccessOpContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="LoraxParser.tuple"/>.
 	/// <para>The default implementation does nothing.</para>

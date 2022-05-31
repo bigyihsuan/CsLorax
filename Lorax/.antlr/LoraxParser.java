@@ -16,31 +16,33 @@ public class LoraxParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T_NULL=7, T_BOOL=8, T_TRUE=9, 
-		T_FALSE=10, IDENTIFIER=11, INTEGER=12, FLOAT=13, STRING=14, TREE_ACCESS_LEFT=15, 
-		TREE_ACCESS_RIGHT=16, TREE_ACCESS_PARENT=17, TREE_ACCESS_VALUE=18, WS=19;
+		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T_NULL=8, T_BOOL=9, 
+		T_TRUE=10, T_FALSE=11, IDENTIFIER=12, INTEGER=13, FLOAT=14, STRING=15, 
+		TREE_ACCESS_LEFT=16, TREE_ACCESS_RIGHT=17, TREE_ACCESS_PARENT=18, TREE_ACCESS_VALUE=19, 
+		WS=20;
 	public static final int
 		RULE_treeAccess = 0, RULE_treeLiteral = 1, RULE_treeChildren = 2, RULE_treeChild = 3, 
-		RULE_nodeValue = 4, RULE_treeAccessOps = 5, RULE_treeAccessTraversor = 6, 
-		RULE_tuple = 7, RULE_primitive = 8;
+		RULE_nodeValue = 4, RULE_tupleAccess = 5, RULE_treeAccessOps = 6, RULE_treeAccessTraversor = 7, 
+		RULE_tupleAccessOp = 8, RULE_tuple = 9, RULE_primitive = 10;
 	private static String[] makeRuleNames() {
 		return new String[] {
 			"treeAccess", "treeLiteral", "treeChildren", "treeChild", "nodeValue", 
-			"treeAccessOps", "treeAccessTraversor", "tuple", "primitive"
+			"tupleAccess", "treeAccessOps", "treeAccessTraversor", "tupleAccessOp", 
+			"tuple", "primitive"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, "'['", "']'", "':'", "'<'", "','", "'>'", "'Null'", null, "'True'", 
-			"'False'", null, null, null, null, "'/'", "'\\'", "'^'", "'$'"
+			null, "'['", "']'", "':'", "'@'", "'<'", "','", "'>'", "'Null'", null, 
+			"'True'", "'False'", null, null, null, null, "'/'", "'\\'", "'^'", "'$'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
-			null, null, null, null, null, null, null, "T_NULL", "T_BOOL", "T_TRUE", 
+			null, null, null, null, null, null, null, null, "T_NULL", "T_BOOL", "T_TRUE", 
 			"T_FALSE", "IDENTIFIER", "INTEGER", "FLOAT", "STRING", "TREE_ACCESS_LEFT", 
 			"TREE_ACCESS_RIGHT", "TREE_ACCESS_PARENT", "TREE_ACCESS_VALUE", "WS"
 		};
@@ -116,10 +118,10 @@ public class LoraxParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			{
-			setState(18);
+			setState(22);
 			treeLiteral();
 			}
-			setState(19);
+			setState(23);
 			treeAccessOps();
 			}
 		}
@@ -154,21 +156,21 @@ public class LoraxParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(21);
+			setState(25);
 			nodeValue();
-			setState(22);
+			setState(26);
 			match(T__0);
-			setState(24);
+			setState(28);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__2) | (1L << T__3) | (1L << T_NULL) | (1L << T_BOOL) | (1L << INTEGER) | (1L << FLOAT) | (1L << STRING))) != 0)) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__2) | (1L << T__4) | (1L << T_NULL) | (1L << T_BOOL) | (1L << INTEGER) | (1L << FLOAT) | (1L << STRING))) != 0)) {
 				{
-				setState(23);
+				setState(27);
 				treeChildren();
 				}
 			}
 
-			setState(26);
+			setState(30);
 			match(T__1);
 			}
 		}
@@ -203,24 +205,24 @@ public class LoraxParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(29);
+			setState(33);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__3) | (1L << T_NULL) | (1L << T_BOOL) | (1L << INTEGER) | (1L << FLOAT) | (1L << STRING))) != 0)) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__4) | (1L << T_NULL) | (1L << T_BOOL) | (1L << INTEGER) | (1L << FLOAT) | (1L << STRING))) != 0)) {
 				{
-				setState(28);
+				setState(32);
 				treeChild();
 				}
 			}
 
-			setState(31);
+			setState(35);
 			match(T__2);
-			setState(33);
+			setState(37);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__3) | (1L << T_NULL) | (1L << T_BOOL) | (1L << INTEGER) | (1L << FLOAT) | (1L << STRING))) != 0)) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__4) | (1L << T_NULL) | (1L << T_BOOL) | (1L << INTEGER) | (1L << FLOAT) | (1L << STRING))) != 0)) {
 				{
-				setState(32);
+				setState(36);
 				treeChild();
 				}
 			}
@@ -255,20 +257,20 @@ public class LoraxParser extends Parser {
 		TreeChildContext _localctx = new TreeChildContext(_ctx, getState());
 		enterRule(_localctx, 6, RULE_treeChild);
 		try {
-			setState(37);
+			setState(41);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,3,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(35);
+				setState(39);
 				nodeValue();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(36);
+				setState(40);
 				treeLiteral();
 				}
 				break;
@@ -302,13 +304,13 @@ public class LoraxParser extends Parser {
 		NodeValueContext _localctx = new NodeValueContext(_ctx, getState());
 		enterRule(_localctx, 8, RULE_nodeValue);
 		try {
-			setState(41);
+			setState(45);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
-			case T__3:
+			case T__4:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(39);
+				setState(43);
 				tuple();
 				}
 				break;
@@ -319,7 +321,7 @@ public class LoraxParser extends Parser {
 			case STRING:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(40);
+				setState(44);
 				primitive();
 				}
 				break;
@@ -338,12 +340,47 @@ public class LoraxParser extends Parser {
 		return _localctx;
 	}
 
-	public static class TreeAccessOpsContext extends ParserRuleContext {
-		public List<TreeAccessTraversorContext> treeAccessTraversor() {
-			return getRuleContexts(TreeAccessTraversorContext.class);
+	public static class TupleAccessContext extends ParserRuleContext {
+		public TupleAccessOpContext tupleAccessOp() {
+			return getRuleContext(TupleAccessOpContext.class,0);
 		}
-		public TreeAccessTraversorContext treeAccessTraversor(int i) {
-			return getRuleContext(TreeAccessTraversorContext.class,i);
+		public TupleContext tuple() {
+			return getRuleContext(TupleContext.class,0);
+		}
+		public TupleAccessContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_tupleAccess; }
+	}
+
+	public final TupleAccessContext tupleAccess() throws RecognitionException {
+		TupleAccessContext _localctx = new TupleAccessContext(_ctx, getState());
+		enterRule(_localctx, 10, RULE_tupleAccess);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			{
+			setState(47);
+			tuple();
+			}
+			setState(48);
+			tupleAccessOp();
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class TreeAccessOpsContext extends ParserRuleContext {
+		public TreeAccessTraversorContext treeAccessTraversor() {
+			return getRuleContext(TreeAccessTraversorContext.class,0);
 		}
 		public TerminalNode TREE_ACCESS_VALUE() { return getToken(LoraxParser.TREE_ACCESS_VALUE, 0); }
 		public TreeAccessOpsContext(ParserRuleContext parent, int invokingState) {
@@ -354,31 +391,19 @@ public class LoraxParser extends Parser {
 
 	public final TreeAccessOpsContext treeAccessOps() throws RecognitionException {
 		TreeAccessOpsContext _localctx = new TreeAccessOpsContext(_ctx, getState());
-		enterRule(_localctx, 10, RULE_treeAccessOps);
+		enterRule(_localctx, 12, RULE_treeAccessOps);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(46);
-			_errHandler.sync(this);
-			_la = _input.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << TREE_ACCESS_LEFT) | (1L << TREE_ACCESS_RIGHT) | (1L << TREE_ACCESS_PARENT))) != 0)) {
-				{
-				{
-				setState(43);
-				treeAccessTraversor();
-				}
-				}
-				setState(48);
-				_errHandler.sync(this);
-				_la = _input.LA(1);
-			}
 			setState(50);
+			treeAccessTraversor();
+			setState(52);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==TREE_ACCESS_VALUE) {
 				{
-				setState(49);
+				setState(51);
 				match(TREE_ACCESS_VALUE);
 				}
 			}
@@ -408,12 +433,12 @@ public class LoraxParser extends Parser {
 
 	public final TreeAccessTraversorContext treeAccessTraversor() throws RecognitionException {
 		TreeAccessTraversorContext _localctx = new TreeAccessTraversorContext(_ctx, getState());
-		enterRule(_localctx, 12, RULE_treeAccessTraversor);
+		enterRule(_localctx, 14, RULE_treeAccessTraversor);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(52);
+			setState(54);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << TREE_ACCESS_LEFT) | (1L << TREE_ACCESS_RIGHT) | (1L << TREE_ACCESS_PARENT))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -423,6 +448,37 @@ public class LoraxParser extends Parser {
 				_errHandler.reportMatch(this);
 				consume();
 			}
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class TupleAccessOpContext extends ParserRuleContext {
+		public TerminalNode INTEGER() { return getToken(LoraxParser.INTEGER, 0); }
+		public TupleAccessOpContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_tupleAccessOp; }
+	}
+
+	public final TupleAccessOpContext tupleAccessOp() throws RecognitionException {
+		TupleAccessOpContext _localctx = new TupleAccessOpContext(_ctx, getState());
+		enterRule(_localctx, 16, RULE_tupleAccessOp);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(56);
+			match(T__3);
+			setState(57);
+			match(INTEGER);
 			}
 		}
 		catch (RecognitionException re) {
@@ -451,41 +507,41 @@ public class LoraxParser extends Parser {
 
 	public final TupleContext tuple() throws RecognitionException {
 		TupleContext _localctx = new TupleContext(_ctx, getState());
-		enterRule(_localctx, 14, RULE_tuple);
+		enterRule(_localctx, 18, RULE_tuple);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(54);
-			match(T__3);
-			setState(63);
+			setState(59);
+			match(T__4);
+			setState(68);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T_NULL) | (1L << T_BOOL) | (1L << INTEGER) | (1L << FLOAT) | (1L << STRING))) != 0)) {
 				{
-				setState(55);
-				primitive();
 				setState(60);
+				primitive();
+				setState(65);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				while (_la==T__4) {
+				while (_la==T__5) {
 					{
 					{
-					setState(56);
-					match(T__4);
-					setState(57);
+					setState(61);
+					match(T__5);
+					setState(62);
 					primitive();
 					}
 					}
-					setState(62);
+					setState(67);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
 				}
 			}
 
-			setState(65);
-			match(T__5);
+			setState(70);
+			match(T__6);
 			}
 		}
 		catch (RecognitionException re) {
@@ -513,12 +569,12 @@ public class LoraxParser extends Parser {
 
 	public final PrimitiveContext primitive() throws RecognitionException {
 		PrimitiveContext _localctx = new PrimitiveContext(_ctx, getState());
-		enterRule(_localctx, 16, RULE_primitive);
+		enterRule(_localctx, 20, RULE_primitive);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(67);
+			setState(72);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T_NULL) | (1L << T_BOOL) | (1L << INTEGER) | (1L << FLOAT) | (1L << STRING))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -542,25 +598,25 @@ public class LoraxParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\25H\4\2\t\2\4\3\t"+
-		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\3\2\3\2\3\2"+
-		"\3\3\3\3\3\3\5\3\33\n\3\3\3\3\3\3\4\5\4 \n\4\3\4\3\4\5\4$\n\4\3\5\3\5"+
-		"\5\5(\n\5\3\6\3\6\5\6,\n\6\3\7\7\7/\n\7\f\7\16\7\62\13\7\3\7\5\7\65\n"+
-		"\7\3\b\3\b\3\t\3\t\3\t\3\t\7\t=\n\t\f\t\16\t@\13\t\5\tB\n\t\3\t\3\t\3"+
-		"\n\3\n\3\n\2\2\13\2\4\6\b\n\f\16\20\22\2\4\3\2\21\23\4\2\t\n\16\20\2G"+
-		"\2\24\3\2\2\2\4\27\3\2\2\2\6\37\3\2\2\2\b\'\3\2\2\2\n+\3\2\2\2\f\60\3"+
-		"\2\2\2\16\66\3\2\2\2\208\3\2\2\2\22E\3\2\2\2\24\25\5\4\3\2\25\26\5\f\7"+
-		"\2\26\3\3\2\2\2\27\30\5\n\6\2\30\32\7\3\2\2\31\33\5\6\4\2\32\31\3\2\2"+
-		"\2\32\33\3\2\2\2\33\34\3\2\2\2\34\35\7\4\2\2\35\5\3\2\2\2\36 \5\b\5\2"+
-		"\37\36\3\2\2\2\37 \3\2\2\2 !\3\2\2\2!#\7\5\2\2\"$\5\b\5\2#\"\3\2\2\2#"+
-		"$\3\2\2\2$\7\3\2\2\2%(\5\n\6\2&(\5\4\3\2\'%\3\2\2\2\'&\3\2\2\2(\t\3\2"+
-		"\2\2),\5\20\t\2*,\5\22\n\2+)\3\2\2\2+*\3\2\2\2,\13\3\2\2\2-/\5\16\b\2"+
-		".-\3\2\2\2/\62\3\2\2\2\60.\3\2\2\2\60\61\3\2\2\2\61\64\3\2\2\2\62\60\3"+
-		"\2\2\2\63\65\7\24\2\2\64\63\3\2\2\2\64\65\3\2\2\2\65\r\3\2\2\2\66\67\t"+
-		"\2\2\2\67\17\3\2\2\28A\7\6\2\29>\5\22\n\2:;\7\7\2\2;=\5\22\n\2<:\3\2\2"+
-		"\2=@\3\2\2\2><\3\2\2\2>?\3\2\2\2?B\3\2\2\2@>\3\2\2\2A9\3\2\2\2AB\3\2\2"+
-		"\2BC\3\2\2\2CD\7\b\2\2D\21\3\2\2\2EF\t\3\2\2F\23\3\2\2\2\13\32\37#\'+"+
-		"\60\64>A";
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\26M\4\2\t\2\4\3\t"+
+		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\4"+
+		"\f\t\f\3\2\3\2\3\2\3\3\3\3\3\3\5\3\37\n\3\3\3\3\3\3\4\5\4$\n\4\3\4\3\4"+
+		"\5\4(\n\4\3\5\3\5\5\5,\n\5\3\6\3\6\5\6\60\n\6\3\7\3\7\3\7\3\b\3\b\5\b"+
+		"\67\n\b\3\t\3\t\3\n\3\n\3\n\3\13\3\13\3\13\3\13\7\13B\n\13\f\13\16\13"+
+		"E\13\13\5\13G\n\13\3\13\3\13\3\f\3\f\3\f\2\2\r\2\4\6\b\n\f\16\20\22\24"+
+		"\26\2\4\3\2\22\24\4\2\n\13\17\21\2I\2\30\3\2\2\2\4\33\3\2\2\2\6#\3\2\2"+
+		"\2\b+\3\2\2\2\n/\3\2\2\2\f\61\3\2\2\2\16\64\3\2\2\2\208\3\2\2\2\22:\3"+
+		"\2\2\2\24=\3\2\2\2\26J\3\2\2\2\30\31\5\4\3\2\31\32\5\16\b\2\32\3\3\2\2"+
+		"\2\33\34\5\n\6\2\34\36\7\3\2\2\35\37\5\6\4\2\36\35\3\2\2\2\36\37\3\2\2"+
+		"\2\37 \3\2\2\2 !\7\4\2\2!\5\3\2\2\2\"$\5\b\5\2#\"\3\2\2\2#$\3\2\2\2$%"+
+		"\3\2\2\2%\'\7\5\2\2&(\5\b\5\2\'&\3\2\2\2\'(\3\2\2\2(\7\3\2\2\2),\5\n\6"+
+		"\2*,\5\4\3\2+)\3\2\2\2+*\3\2\2\2,\t\3\2\2\2-\60\5\24\13\2.\60\5\26\f\2"+
+		"/-\3\2\2\2/.\3\2\2\2\60\13\3\2\2\2\61\62\5\24\13\2\62\63\5\22\n\2\63\r"+
+		"\3\2\2\2\64\66\5\20\t\2\65\67\7\25\2\2\66\65\3\2\2\2\66\67\3\2\2\2\67"+
+		"\17\3\2\2\289\t\2\2\29\21\3\2\2\2:;\7\6\2\2;<\7\17\2\2<\23\3\2\2\2=F\7"+
+		"\7\2\2>C\5\26\f\2?@\7\b\2\2@B\5\26\f\2A?\3\2\2\2BE\3\2\2\2CA\3\2\2\2C"+
+		"D\3\2\2\2DG\3\2\2\2EC\3\2\2\2F>\3\2\2\2FG\3\2\2\2GH\3\2\2\2HI\7\t\2\2"+
+		"I\25\3\2\2\2JK\t\3\2\2K\27\3\2\2\2\n\36#\'+/\66CF";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

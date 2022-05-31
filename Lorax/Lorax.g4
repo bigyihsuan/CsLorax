@@ -6,23 +6,28 @@ treeChildren: treeChild? ':' treeChild?;
 treeChild: nodeValue | treeLiteral;
 nodeValue: tuple | primitive;
 
-treeAccessOps: treeAccessTraversor* TREE_ACCESS_VALUE?;
+tupleAccess: (tuple) tupleAccessOp;
+
+treeAccessOps: treeAccessTraversor TREE_ACCESS_VALUE?;
 treeAccessTraversor:
 	TREE_ACCESS_LEFT
 	| TREE_ACCESS_RIGHT
 	| TREE_ACCESS_PARENT;
 
+tupleAccessOp: '@' INTEGER;
+
 // values
 tuple: '<' (primitive (',' primitive)*)? '>';
+
 primitive: T_NULL | T_BOOL | STRING | FLOAT | INTEGER;
 T_NULL: 'Null';
 T_BOOL: T_TRUE | T_FALSE;
 T_TRUE: 'True';
 T_FALSE: 'False';
 IDENTIFIER: ALPHA ('_' | ALPHANUM)+;
-INTEGER: DIGIT+;
-FLOAT: DIGIT+ '.' DIGIT+;
-STRING: '\'' ANY* '\'';
+INTEGER: '-'? DIGIT+;
+FLOAT: '-'? DIGIT+ '.' DIGIT+;
+STRING: '\'' ANY*? '\'';
 
 // symbols
 TREE_ACCESS_LEFT: '/';

@@ -81,6 +81,16 @@ public interface ILoraxListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitNodeValue([NotNull] LoraxParser.NodeValueContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="LoraxParser.tupleAccess"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterTupleAccess([NotNull] LoraxParser.TupleAccessContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="LoraxParser.tupleAccess"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitTupleAccess([NotNull] LoraxParser.TupleAccessContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="LoraxParser.treeAccessOps"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -100,6 +110,16 @@ public interface ILoraxListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitTreeAccessTraversor([NotNull] LoraxParser.TreeAccessTraversorContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="LoraxParser.tupleAccessOp"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterTupleAccessOp([NotNull] LoraxParser.TupleAccessOpContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="LoraxParser.tupleAccessOp"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitTupleAccessOp([NotNull] LoraxParser.TupleAccessOpContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="LoraxParser.tuple"/>.
 	/// </summary>

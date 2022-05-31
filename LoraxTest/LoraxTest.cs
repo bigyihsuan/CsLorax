@@ -9,13 +9,13 @@ public class LoraxTests
         "1",
         "123",
         "0000123123123",
-        "029387928300003929382783839003",
+        "-029387928300003929382783839003",
         // float
         "0.0",
         "1.0",
         "12.3",
         "000012.3123123",
-        "029387928.300003929382783839003",
+        "-029387928.300003929382783839003",
         // bool
         "True",
         "False",
@@ -35,6 +35,14 @@ public class LoraxTests
         "<{0},{1},{2}>", // 3 value
         "<{0},{1},{2},{3}>", // 4 value
         "<{0},{1},{2},{3},{4}>" // 5 value
+    };
+
+    static List<string> tupleAccesses = new List<string>() {
+        "@1",
+        "@2",
+        "@100",
+        "@0304",
+        "@-9999",
     };
 
     static List<string> nodeValues = new List<string>() {
@@ -109,7 +117,7 @@ public class LoraxTests
             Random rng = new Random();
             var shuffled = primitives.OrderBy(a => rng.Next()).ToArray<string>();
             var filledTuple = string.Format(tup, shuffled.ToArray<string>());
-            Console.WriteLine(filledTuple);
+            // Console.WriteLine(filledTuple);
             ICharStream stream = CharStreams.fromString(filledTuple);
             ITokenSource lexer = new LoraxLexer(stream);
             ITokenStream tokens = new CommonTokenStream(lexer);
@@ -121,6 +129,28 @@ public class LoraxTests
     }
 
     [TestMethod]
+    public void TestTupleAccess()
+    {
+        foreach (var tup in tuples)
+        {
+            foreach (var access in tupleAccesses)
+            {
+                Random rng = new Random();
+                var shuffled = primitives.OrderBy(a => rng.Next()).ToArray<string>();
+                var filledTuple = string.Format(tup, shuffled.ToArray<string>());
+                filledTuple += access;
+                ICharStream stream = CharStreams.fromString(filledTuple);
+                ITokenSource lexer = new LoraxLexer(stream);
+                ITokenStream tokens = new CommonTokenStream(lexer);
+                LoraxParser parser = new LoraxParser(tokens);
+                parser.BuildParseTree = true;
+                IParseTree tree = parser.tupleAccess();
+                Assert.IsTrue(parser.NumberOfSyntaxErrors <= 0);
+            }
+        }
+    }
+
+    [TestMethod]
     public void TestTrees()
     {
         Random rng = new Random();
@@ -128,7 +158,7 @@ public class LoraxTests
         {
             var shuffled = nodeValues.OrderBy(a => rng.Next()).ToArray<string>();
             var filledTree = string.Format(tree, shuffled.ToArray<string>());
-            Console.WriteLine(filledTree);
+            // Console.WriteLine(filledTree);
             ICharStream stream = CharStreams.fromString(filledTree);
             ITokenSource lexer = new LoraxLexer(stream);
             ITokenStream tokens = new CommonTokenStream(lexer);
@@ -147,7 +177,7 @@ public class LoraxTests
             foreach (var access in treeAccesses)
             {
                 var treeAccess = tree + access;
-                Console.WriteLine(treeAccess);
+                // Console.WriteLine(treeAccess);
                 ICharStream stream = CharStreams.fromString(treeAccess);
                 ITokenSource lexer = new LoraxLexer(stream);
                 ITokenStream tokens = new CommonTokenStream(lexer);

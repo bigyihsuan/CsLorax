@@ -36,24 +36,26 @@ public partial class LoraxParser : Parser {
 	protected static DFA[] decisionToDFA;
 	protected static PredictionContextCache sharedContextCache = new PredictionContextCache();
 	public const int
-		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T_NULL=7, T_BOOL=8, T_TRUE=9, 
-		T_FALSE=10, IDENTIFIER=11, INTEGER=12, FLOAT=13, STRING=14, TREE_ACCESS_LEFT=15, 
-		TREE_ACCESS_RIGHT=16, TREE_ACCESS_PARENT=17, TREE_ACCESS_VALUE=18, WS=19;
+		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T_NULL=8, T_BOOL=9, 
+		T_TRUE=10, T_FALSE=11, IDENTIFIER=12, INTEGER=13, FLOAT=14, STRING=15, 
+		TREE_ACCESS_LEFT=16, TREE_ACCESS_RIGHT=17, TREE_ACCESS_PARENT=18, TREE_ACCESS_VALUE=19, 
+		WS=20;
 	public const int
 		RULE_treeAccess = 0, RULE_treeLiteral = 1, RULE_treeChildren = 2, RULE_treeChild = 3, 
-		RULE_nodeValue = 4, RULE_treeAccessOps = 5, RULE_treeAccessTraversor = 6, 
-		RULE_tuple = 7, RULE_primitive = 8;
+		RULE_nodeValue = 4, RULE_tupleAccess = 5, RULE_treeAccessOps = 6, RULE_treeAccessTraversor = 7, 
+		RULE_tupleAccessOp = 8, RULE_tuple = 9, RULE_primitive = 10;
 	public static readonly string[] ruleNames = {
 		"treeAccess", "treeLiteral", "treeChildren", "treeChild", "nodeValue", 
-		"treeAccessOps", "treeAccessTraversor", "tuple", "primitive"
+		"tupleAccess", "treeAccessOps", "treeAccessTraversor", "tupleAccessOp", 
+		"tuple", "primitive"
 	};
 
 	private static readonly string[] _LiteralNames = {
-		null, "'['", "']'", "':'", "'<'", "','", "'>'", "'Null'", null, "'True'", 
-		"'False'", null, null, null, null, "'/'", "'\\'", "'^'", "'$'"
+		null, "'['", "']'", "':'", "'@'", "'<'", "','", "'>'", "'Null'", null, 
+		"'True'", "'False'", null, null, null, null, "'/'", "'\\'", "'^'", "'$'"
 	};
 	private static readonly string[] _SymbolicNames = {
-		null, null, null, null, null, null, null, "T_NULL", "T_BOOL", "T_TRUE", 
+		null, null, null, null, null, null, null, null, "T_NULL", "T_BOOL", "T_TRUE", 
 		"T_FALSE", "IDENTIFIER", "INTEGER", "FLOAT", "STRING", "TREE_ACCESS_LEFT", 
 		"TREE_ACCESS_RIGHT", "TREE_ACCESS_PARENT", "TREE_ACCESS_VALUE", "WS"
 	};
@@ -121,10 +123,10 @@ public partial class LoraxParser : Parser {
 			EnterOuterAlt(_localctx, 1);
 			{
 			{
-			State = 18;
+			State = 22;
 			treeLiteral();
 			}
-			State = 19;
+			State = 23;
 			treeAccessOps();
 			}
 		}
@@ -171,21 +173,21 @@ public partial class LoraxParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 21;
+			State = 25;
 			nodeValue();
-			State = 22;
+			State = 26;
 			Match(T__0);
-			State = 24;
+			State = 28;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__2) | (1L << T__3) | (1L << T_NULL) | (1L << T_BOOL) | (1L << INTEGER) | (1L << FLOAT) | (1L << STRING))) != 0)) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__2) | (1L << T__4) | (1L << T_NULL) | (1L << T_BOOL) | (1L << INTEGER) | (1L << FLOAT) | (1L << STRING))) != 0)) {
 				{
-				State = 23;
+				State = 27;
 				treeChildren();
 				}
 			}
 
-			State = 26;
+			State = 30;
 			Match(T__1);
 			}
 		}
@@ -232,24 +234,24 @@ public partial class LoraxParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 29;
+			State = 33;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__3) | (1L << T_NULL) | (1L << T_BOOL) | (1L << INTEGER) | (1L << FLOAT) | (1L << STRING))) != 0)) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__4) | (1L << T_NULL) | (1L << T_BOOL) | (1L << INTEGER) | (1L << FLOAT) | (1L << STRING))) != 0)) {
 				{
-				State = 28;
+				State = 32;
 				treeChild();
 				}
 			}
 
-			State = 31;
+			State = 35;
 			Match(T__2);
-			State = 33;
+			State = 37;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__3) | (1L << T_NULL) | (1L << T_BOOL) | (1L << INTEGER) | (1L << FLOAT) | (1L << STRING))) != 0)) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__4) | (1L << T_NULL) | (1L << T_BOOL) | (1L << INTEGER) | (1L << FLOAT) | (1L << STRING))) != 0)) {
 				{
-				State = 32;
+				State = 36;
 				treeChild();
 				}
 			}
@@ -296,20 +298,20 @@ public partial class LoraxParser : Parser {
 		TreeChildContext _localctx = new TreeChildContext(Context, State);
 		EnterRule(_localctx, 6, RULE_treeChild);
 		try {
-			State = 37;
+			State = 41;
 			ErrorHandler.Sync(this);
 			switch ( Interpreter.AdaptivePredict(TokenStream,3,Context) ) {
 			case 1:
 				EnterOuterAlt(_localctx, 1);
 				{
-				State = 35;
+				State = 39;
 				nodeValue();
 				}
 				break;
 			case 2:
 				EnterOuterAlt(_localctx, 2);
 				{
-				State = 36;
+				State = 40;
 				treeLiteral();
 				}
 				break;
@@ -355,13 +357,13 @@ public partial class LoraxParser : Parser {
 		NodeValueContext _localctx = new NodeValueContext(Context, State);
 		EnterRule(_localctx, 8, RULE_nodeValue);
 		try {
-			State = 41;
+			State = 45;
 			ErrorHandler.Sync(this);
 			switch (TokenStream.LA(1)) {
-			case T__3:
+			case T__4:
 				EnterOuterAlt(_localctx, 1);
 				{
-				State = 39;
+				State = 43;
 				tuple();
 				}
 				break;
@@ -372,7 +374,7 @@ public partial class LoraxParser : Parser {
 			case STRING:
 				EnterOuterAlt(_localctx, 2);
 				{
-				State = 40;
+				State = 44;
 				primitive();
 				}
 				break;
@@ -391,12 +393,59 @@ public partial class LoraxParser : Parser {
 		return _localctx;
 	}
 
-	public partial class TreeAccessOpsContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public TreeAccessTraversorContext[] treeAccessTraversor() {
-			return GetRuleContexts<TreeAccessTraversorContext>();
+	public partial class TupleAccessContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public TupleAccessOpContext tupleAccessOp() {
+			return GetRuleContext<TupleAccessOpContext>(0);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public TreeAccessTraversorContext treeAccessTraversor(int i) {
-			return GetRuleContext<TreeAccessTraversorContext>(i);
+		[System.Diagnostics.DebuggerNonUserCode] public TupleContext tuple() {
+			return GetRuleContext<TupleContext>(0);
+		}
+		public TupleAccessContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_tupleAccess; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			ILoraxListener typedListener = listener as ILoraxListener;
+			if (typedListener != null) typedListener.EnterTupleAccess(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			ILoraxListener typedListener = listener as ILoraxListener;
+			if (typedListener != null) typedListener.ExitTupleAccess(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public TupleAccessContext tupleAccess() {
+		TupleAccessContext _localctx = new TupleAccessContext(Context, State);
+		EnterRule(_localctx, 10, RULE_tupleAccess);
+		try {
+			EnterOuterAlt(_localctx, 1);
+			{
+			{
+			State = 47;
+			tuple();
+			}
+			State = 48;
+			tupleAccessOp();
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public partial class TreeAccessOpsContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public TreeAccessTraversorContext treeAccessTraversor() {
+			return GetRuleContext<TreeAccessTraversorContext>(0);
 		}
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TREE_ACCESS_VALUE() { return GetToken(LoraxParser.TREE_ACCESS_VALUE, 0); }
 		public TreeAccessOpsContext(ParserRuleContext parent, int invokingState)
@@ -419,31 +468,19 @@ public partial class LoraxParser : Parser {
 	[RuleVersion(0)]
 	public TreeAccessOpsContext treeAccessOps() {
 		TreeAccessOpsContext _localctx = new TreeAccessOpsContext(Context, State);
-		EnterRule(_localctx, 10, RULE_treeAccessOps);
+		EnterRule(_localctx, 12, RULE_treeAccessOps);
 		int _la;
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 46;
-			ErrorHandler.Sync(this);
-			_la = TokenStream.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << TREE_ACCESS_LEFT) | (1L << TREE_ACCESS_RIGHT) | (1L << TREE_ACCESS_PARENT))) != 0)) {
-				{
-				{
-				State = 43;
-				treeAccessTraversor();
-				}
-				}
-				State = 48;
-				ErrorHandler.Sync(this);
-				_la = TokenStream.LA(1);
-			}
 			State = 50;
+			treeAccessTraversor();
+			State = 52;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			if (_la==TREE_ACCESS_VALUE) {
 				{
-				State = 49;
+				State = 51;
 				Match(TREE_ACCESS_VALUE);
 				}
 			}
@@ -485,12 +522,12 @@ public partial class LoraxParser : Parser {
 	[RuleVersion(0)]
 	public TreeAccessTraversorContext treeAccessTraversor() {
 		TreeAccessTraversorContext _localctx = new TreeAccessTraversorContext(Context, State);
-		EnterRule(_localctx, 12, RULE_treeAccessTraversor);
+		EnterRule(_localctx, 14, RULE_treeAccessTraversor);
 		int _la;
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 52;
+			State = 54;
 			_la = TokenStream.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << TREE_ACCESS_LEFT) | (1L << TREE_ACCESS_RIGHT) | (1L << TREE_ACCESS_PARENT))) != 0)) ) {
 			ErrorHandler.RecoverInline(this);
@@ -499,6 +536,49 @@ public partial class LoraxParser : Parser {
 				ErrorHandler.ReportMatch(this);
 			    Consume();
 			}
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public partial class TupleAccessOpContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode INTEGER() { return GetToken(LoraxParser.INTEGER, 0); }
+		public TupleAccessOpContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_tupleAccessOp; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			ILoraxListener typedListener = listener as ILoraxListener;
+			if (typedListener != null) typedListener.EnterTupleAccessOp(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			ILoraxListener typedListener = listener as ILoraxListener;
+			if (typedListener != null) typedListener.ExitTupleAccessOp(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public TupleAccessOpContext tupleAccessOp() {
+		TupleAccessOpContext _localctx = new TupleAccessOpContext(Context, State);
+		EnterRule(_localctx, 16, RULE_tupleAccessOp);
+		try {
+			EnterOuterAlt(_localctx, 1);
+			{
+			State = 56;
+			Match(T__3);
+			State = 57;
+			Match(INTEGER);
 			}
 		}
 		catch (RecognitionException re) {
@@ -539,41 +619,41 @@ public partial class LoraxParser : Parser {
 	[RuleVersion(0)]
 	public TupleContext tuple() {
 		TupleContext _localctx = new TupleContext(Context, State);
-		EnterRule(_localctx, 14, RULE_tuple);
+		EnterRule(_localctx, 18, RULE_tuple);
 		int _la;
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 54;
-			Match(T__3);
-			State = 63;
+			State = 59;
+			Match(T__4);
+			State = 68;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T_NULL) | (1L << T_BOOL) | (1L << INTEGER) | (1L << FLOAT) | (1L << STRING))) != 0)) {
 				{
-				State = 55;
-				primitive();
 				State = 60;
+				primitive();
+				State = 65;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				while (_la==T__4) {
+				while (_la==T__5) {
 					{
 					{
-					State = 56;
-					Match(T__4);
-					State = 57;
+					State = 61;
+					Match(T__5);
+					State = 62;
 					primitive();
 					}
 					}
-					State = 62;
+					State = 67;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				}
 				}
 			}
 
-			State = 65;
-			Match(T__5);
+			State = 70;
+			Match(T__6);
 			}
 		}
 		catch (RecognitionException re) {
@@ -613,12 +693,12 @@ public partial class LoraxParser : Parser {
 	[RuleVersion(0)]
 	public PrimitiveContext primitive() {
 		PrimitiveContext _localctx = new PrimitiveContext(Context, State);
-		EnterRule(_localctx, 16, RULE_primitive);
+		EnterRule(_localctx, 20, RULE_primitive);
 		int _la;
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 67;
+			State = 72;
 			_la = TokenStream.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T_NULL) | (1L << T_BOOL) | (1L << INTEGER) | (1L << FLOAT) | (1L << STRING))) != 0)) ) {
 			ErrorHandler.RecoverInline(this);
@@ -641,26 +721,27 @@ public partial class LoraxParser : Parser {
 	}
 
 	private static int[] _serializedATN = {
-		4,1,19,70,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,2,7,
-		7,7,2,8,7,8,1,0,1,0,1,0,1,1,1,1,1,1,3,1,25,8,1,1,1,1,1,1,2,3,2,30,8,2,
-		1,2,1,2,3,2,34,8,2,1,3,1,3,3,3,38,8,3,1,4,1,4,3,4,42,8,4,1,5,5,5,45,8,
-		5,10,5,12,5,48,9,5,1,5,3,5,51,8,5,1,6,1,6,1,7,1,7,1,7,1,7,5,7,59,8,7,10,
-		7,12,7,62,9,7,3,7,64,8,7,1,7,1,7,1,8,1,8,1,8,0,0,9,0,2,4,6,8,10,12,14,
-		16,0,2,1,0,15,17,2,0,7,8,12,14,69,0,18,1,0,0,0,2,21,1,0,0,0,4,29,1,0,0,
-		0,6,37,1,0,0,0,8,41,1,0,0,0,10,46,1,0,0,0,12,52,1,0,0,0,14,54,1,0,0,0,
-		16,67,1,0,0,0,18,19,3,2,1,0,19,20,3,10,5,0,20,1,1,0,0,0,21,22,3,8,4,0,
-		22,24,5,1,0,0,23,25,3,4,2,0,24,23,1,0,0,0,24,25,1,0,0,0,25,26,1,0,0,0,
-		26,27,5,2,0,0,27,3,1,0,0,0,28,30,3,6,3,0,29,28,1,0,0,0,29,30,1,0,0,0,30,
-		31,1,0,0,0,31,33,5,3,0,0,32,34,3,6,3,0,33,32,1,0,0,0,33,34,1,0,0,0,34,
-		5,1,0,0,0,35,38,3,8,4,0,36,38,3,2,1,0,37,35,1,0,0,0,37,36,1,0,0,0,38,7,
-		1,0,0,0,39,42,3,14,7,0,40,42,3,16,8,0,41,39,1,0,0,0,41,40,1,0,0,0,42,9,
-		1,0,0,0,43,45,3,12,6,0,44,43,1,0,0,0,45,48,1,0,0,0,46,44,1,0,0,0,46,47,
-		1,0,0,0,47,50,1,0,0,0,48,46,1,0,0,0,49,51,5,18,0,0,50,49,1,0,0,0,50,51,
-		1,0,0,0,51,11,1,0,0,0,52,53,7,0,0,0,53,13,1,0,0,0,54,63,5,4,0,0,55,60,
-		3,16,8,0,56,57,5,5,0,0,57,59,3,16,8,0,58,56,1,0,0,0,59,62,1,0,0,0,60,58,
-		1,0,0,0,60,61,1,0,0,0,61,64,1,0,0,0,62,60,1,0,0,0,63,55,1,0,0,0,63,64,
-		1,0,0,0,64,65,1,0,0,0,65,66,5,6,0,0,66,15,1,0,0,0,67,68,7,1,0,0,68,17,
-		1,0,0,0,9,24,29,33,37,41,46,50,60,63
+		4,1,20,75,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,2,7,
+		7,7,2,8,7,8,2,9,7,9,2,10,7,10,1,0,1,0,1,0,1,1,1,1,1,1,3,1,29,8,1,1,1,1,
+		1,1,2,3,2,34,8,2,1,2,1,2,3,2,38,8,2,1,3,1,3,3,3,42,8,3,1,4,1,4,3,4,46,
+		8,4,1,5,1,5,1,5,1,6,1,6,3,6,53,8,6,1,7,1,7,1,8,1,8,1,8,1,9,1,9,1,9,1,9,
+		5,9,64,8,9,10,9,12,9,67,9,9,3,9,69,8,9,1,9,1,9,1,10,1,10,1,10,0,0,11,0,
+		2,4,6,8,10,12,14,16,18,20,0,2,1,0,16,18,2,0,8,9,13,15,71,0,22,1,0,0,0,
+		2,25,1,0,0,0,4,33,1,0,0,0,6,41,1,0,0,0,8,45,1,0,0,0,10,47,1,0,0,0,12,50,
+		1,0,0,0,14,54,1,0,0,0,16,56,1,0,0,0,18,59,1,0,0,0,20,72,1,0,0,0,22,23,
+		3,2,1,0,23,24,3,12,6,0,24,1,1,0,0,0,25,26,3,8,4,0,26,28,5,1,0,0,27,29,
+		3,4,2,0,28,27,1,0,0,0,28,29,1,0,0,0,29,30,1,0,0,0,30,31,5,2,0,0,31,3,1,
+		0,0,0,32,34,3,6,3,0,33,32,1,0,0,0,33,34,1,0,0,0,34,35,1,0,0,0,35,37,5,
+		3,0,0,36,38,3,6,3,0,37,36,1,0,0,0,37,38,1,0,0,0,38,5,1,0,0,0,39,42,3,8,
+		4,0,40,42,3,2,1,0,41,39,1,0,0,0,41,40,1,0,0,0,42,7,1,0,0,0,43,46,3,18,
+		9,0,44,46,3,20,10,0,45,43,1,0,0,0,45,44,1,0,0,0,46,9,1,0,0,0,47,48,3,18,
+		9,0,48,49,3,16,8,0,49,11,1,0,0,0,50,52,3,14,7,0,51,53,5,19,0,0,52,51,1,
+		0,0,0,52,53,1,0,0,0,53,13,1,0,0,0,54,55,7,0,0,0,55,15,1,0,0,0,56,57,5,
+		4,0,0,57,58,5,13,0,0,58,17,1,0,0,0,59,68,5,5,0,0,60,65,3,20,10,0,61,62,
+		5,6,0,0,62,64,3,20,10,0,63,61,1,0,0,0,64,67,1,0,0,0,65,63,1,0,0,0,65,66,
+		1,0,0,0,66,69,1,0,0,0,67,65,1,0,0,0,68,60,1,0,0,0,68,69,1,0,0,0,69,70,
+		1,0,0,0,70,71,5,7,0,0,71,19,1,0,0,0,72,73,7,1,0,0,73,21,1,0,0,0,8,28,33,
+		37,41,45,52,65,68
 	};
 
 	public static readonly ATN _ATN =
