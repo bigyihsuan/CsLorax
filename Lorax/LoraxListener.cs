@@ -31,6 +31,16 @@ using IToken = Antlr4.Runtime.IToken;
 [System.CLSCompliant(false)]
 public interface ILoraxListener : IParseTreeListener {
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="LoraxParser.value"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterValue([NotNull] LoraxParser.ValueContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="LoraxParser.value"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitValue([NotNull] LoraxParser.ValueContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="LoraxParser.treeAccess"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -140,4 +150,14 @@ public interface ILoraxListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitPrimitive([NotNull] LoraxParser.PrimitiveContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="LoraxParser.literal"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterLiteral([NotNull] LoraxParser.LiteralContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="LoraxParser.literal"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitLiteral([NotNull] LoraxParser.LiteralContext context);
 }

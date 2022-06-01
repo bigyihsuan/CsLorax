@@ -1,0 +1,32 @@
+# recursive implementation of a prefix traversal
+function prefix_print(tree) {
+    if tree == Null {
+        # this node doesn't exist, exit
+        return;
+    }
+    print tree$;
+    print prefix_print(tree/);
+    print prefix_print(tree\);
+}
+
+# recursive implementation of an infix traversal
+function prefix_print(tree) {
+    if tree == Null {
+        # this node doesn't exist, exit
+        return;
+    }
+    print prefix_print(tree/);
+    print tree$;
+    print prefix_print(tree\);
+}
+
+# recursive implementation of a postfix traversal
+function prefix_print(tree) {
+    if tree == Null {
+        # this node doesn't exist, exit
+        return;
+    }
+    print prefix_print(tree/);
+    print prefix_print(tree\);
+    print tree$;
+}

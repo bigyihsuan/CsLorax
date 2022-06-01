@@ -1,0 +1,56 @@
+# trees are a primitive data structure in lorax
+# tree literals consist of two parts: a node value, and its two children.
+node_value[left_child:right_child]
+
+# children are surrounded in square brackets and follow their parent's value
+# children are separated by a colon
+# this colon only appears when there is at least one child
+let empty_tree = Null[]; # there is no such thing as an empty tree; minimum is a single node with no children
+
+# trees can be thought of having infinite Null children
+let tree = 1[2[]:3[4[]:5[]]];
+# `tree` looks like this:
+#            1
+#           / \
+#          2   3
+#             / \
+#            4   5
+print tree//$;
+# the above prints Null because a node with no children, or with 1 child, has the unvalued child be Null
+# all children of that unvalued child/ren is also Null with two Null children
+# this continues indefinitely
+
+# trees are pass-by-reference
+let tree_left = tree/;
+# `tree_left` is a reference to the first left child of `tree`.
+let tree_left_value = tree_left$;
+# the above is equivalent to the following:
+let tree_left_value = tree/$;
+
+let tree2 = 1[2[]:3[4[]:5[]]];
+# `tree2` looks like this:
+#              1
+#           /     \
+#          2       3
+#         / \     / \
+#       (N) (N)  4   5
+# (N) is one of the infinite Null children.
+# trees can be modified by assigning to one of these infinite Null children
+tree2/\ = 6[7[]:8[]]; # this sets the right child of the left child of `tree2` to be the given tree
+# `tree2` now looks like this:
+#              1
+#           /     \
+#          2       3
+#         / \     / \
+#       (N)  6   4   5
+#           / \
+#          7   8
+
+# accessing trees use one of three operators:
+#  - `/`: access the tree that is the left child
+#  - `\`: access the tree that is the right child
+#  - `$`: access the value of the tree
+#  - `^`: access the parent of this node
+# since all trees contain infinite Null children, all trees also have infinite Null parents as well
+# so this evaluates to Null:
+1[2[]]^; # trying to get the parent of node `1`, which does not exist, so it is null

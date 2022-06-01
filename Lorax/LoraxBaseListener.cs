@@ -36,6 +36,18 @@ using ParserRuleContext = Antlr4.Runtime.ParserRuleContext;
 [System.CLSCompliant(false)]
 public partial class LoraxBaseListener : ILoraxListener {
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="LoraxParser.value"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterValue([NotNull] LoraxParser.ValueContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="LoraxParser.value"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitValue([NotNull] LoraxParser.ValueContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="LoraxParser.treeAccess"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -167,6 +179,18 @@ public partial class LoraxBaseListener : ILoraxListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitPrimitive([NotNull] LoraxParser.PrimitiveContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="LoraxParser.literal"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterLiteral([NotNull] LoraxParser.LiteralContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="LoraxParser.literal"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitLiteral([NotNull] LoraxParser.LiteralContext context) { }
 
 	/// <inheritdoc/>
 	/// <remarks>The default implementation does nothing.</remarks>

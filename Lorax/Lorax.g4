@@ -1,12 +1,13 @@
 grammar Lorax;
 
-treeAccess: (treeLiteral) treeAccessOps;
+value: IDENTIFIER | treeLiteral | tuple | primitive;
+treeAccess: treeLiteral treeAccessOps;
 treeLiteral: nodeValue '[' treeChildren? ']';
 treeChildren: treeChild? ':' treeChild?;
 treeChild: nodeValue | treeLiteral;
-nodeValue: tuple | primitive;
+nodeValue: IDENTIFIER | tuple | primitive;
 
-tupleAccess: (tuple) tupleAccessOp;
+tupleAccess: (tuple | IDENTIFIER) tupleAccessOp;
 
 treeAccessOps: treeAccessTraversor TREE_ACCESS_VALUE?;
 treeAccessTraversor:
@@ -18,13 +19,13 @@ tupleAccessOp: '@' INTEGER;
 
 // values
 tuple: '<' (primitive (',' primitive)*)? '>';
-
-primitive: T_NULL | T_BOOL | STRING | FLOAT | INTEGER;
+primitive: IDENTIFIER | literal;
+literal: T_NULL | T_BOOL | STRING | FLOAT | INTEGER;
+IDENTIFIER: ('_' | ALPHA) ('_' | ALPHANUM)+;
 T_NULL: 'Null';
 T_BOOL: T_TRUE | T_FALSE;
 T_TRUE: 'True';
 T_FALSE: 'False';
-IDENTIFIER: ALPHA ('_' | ALPHANUM)+;
 INTEGER: '-'? DIGIT+;
 FLOAT: '-'? DIGIT+ '.' DIGIT+;
 STRING: '\'' ANY*? '\'';

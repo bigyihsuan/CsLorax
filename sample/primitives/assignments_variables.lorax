@@ -1,0 +1,9 @@
+function main() {
+    let a = 1;
+    let b = 2;
+    let c = 5.5;
+    let d = 'this is a\nstring';
+    let e = <0, c, b, 4>;
+    let f = a[b[]:c[d[]:e[]]];
+    c = b;
+}

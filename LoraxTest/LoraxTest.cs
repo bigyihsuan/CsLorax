@@ -1,7 +1,7 @@
 namespace LoraxTest;
 
 [TestClass]
-public class LoraxTests
+public class TestingLiterals
 {
     static List<string> primitives = new List<string>() {
         // int
@@ -25,7 +25,13 @@ public class LoraxTests
         "'hello world'",
         "'faks12312!@!@#!@#($%(#*@#@3ldfjkl'",
         "'\\n \\t'",
-        @"'/\/\/\'\\\\'"
+        @"'/\/\/\'\\\\'",
+        // identifiers
+        "hello",
+        "WORLD",
+        "foo123",
+        "bar_baz",
+        "d1N673_83RR135"
     };
 
     static List<string> tuples = new List<string>() {
@@ -188,4 +194,14 @@ public class LoraxTests
             }
         }
     }
+}
+
+public class TestingExpressions
+{
+
+}
+
+public class TestingStatements
+{
+
 }

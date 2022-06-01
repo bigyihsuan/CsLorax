@@ -1,0 +1,13 @@
+function main() {
+    let tree = 1[<'t', 1.5, 69>[3[], 4[]]:5[]];
+    print tree$; # prints 1
+    print tree/$; # prints <'t', 1.5, 69> (left)
+    print tree\$; # prints 5 (right)
+    print tree/\$; # prints 4 (left-right child)
+    print tree/^$; # prints 1 (left-parent)
+    print tree\\$; # NULL (right-right, which doesn't exist)
+    print tree\\\$; # NULL (right-right-right, which doesn't exist)
+    print tree/$@0; # prints t (0-th element of value of left child)
+    print tree/$@1; # prints 1.5 (1-th element of value of left child)
+    print tree/$@2; # prints 69 (2-th element of value of left child)
+}

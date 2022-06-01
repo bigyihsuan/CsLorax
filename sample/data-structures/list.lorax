@@ -1,0 +1,46 @@
+function main() {
+    let list = 0[];
+
+}
+
+# lists are trees using exactly one branch as it's storage (left or right)
+# which child to use is up to the programmer
+# this implementation uses only left children to store the elements
+
+# create an empty list
+function create_list() {
+    return Null[]
+}
+
+# append an element to the end of the list
+function list_append(list, element) {
+    # locate the final child
+    let last_child = list;
+    while last_child/ != Null {
+        last_child = last_child/;
+    }
+    # left node is safe to set
+    last_child/ = element; # this is a reference to the left child of the last child, which is default Null
+}
+
+# remove an element from the end of the list
+function list_pop(list) {
+    # locate the final child
+    let last_child = list;
+    while last_child/ != Null {
+        last_child = last_child/;
+    }
+    # remove the last child
+    let removed_child = last_child/$; # `removed_child` is a copy of the last child value
+    last_child/ = Null;
+    return removed_child;
+}
+
+# get the index-th element of the list
+function list_at_index(list, index) {
+    let curr = list;
+    for i from 0 to index {
+        curr = curr/;
+    }
+    return curr$;
+}

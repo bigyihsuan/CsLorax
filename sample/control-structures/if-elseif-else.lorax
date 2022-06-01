@@ -1,0 +1,11 @@
+function main() {
+    let n = 1;
+    if n % 2 == 0 {
+        print n;
+    }
+    else if n > 100 {
+        break;
+    } else {
+        print 'not even';
+    }
+}
